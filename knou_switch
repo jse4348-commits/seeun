@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class knou_switch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            // 연산자 선택 메세지 출력
+            System.out.print("연산자를 선택하시오(+, -, *, /, %, q(quit)): ");
+
+            // 연산자 입력 받기
+            char op = sc.next().charAt(0);
+
+            // q 또는 Q 입력 시 프로그램 종료 if 문
+            if (op == 'q' || op == 'Q') {
+                System.out.println("프로그램을 종료합니다.");
+                break;
+            }
+
+            int num1, num2;
+            int result = 0;
+            boolean valid = true;
+
+            // switch문 시작
+            switch (op) {
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '%':
+                    // 값 입력받기
+                    System.out.print("  좌측 피연산자: ");
+                    num1 = sc.nextInt();
+                    System.out.print("  우측 피연산자: ");
+                    num2 = sc.nextInt();
+
+                    // 각 연산자별 switch문
+                    switch (op) {
+                        case '+':
+                            result = num1 + num2;
+                            break;
+                        case '-':
+                            result = num1 - num2;
+                            break;
+                        case '*':
+                            result = num1 * num2;
+                            break;
+                        case '/':
+                            // 제수가 0일 경우 오류메시지 출력
+                            if (num2 == 0) {
+                                System.out.println("제수는 0이 아니어야 합니다.");
+                                valid = false;
+                            } else {
+                                result = num1 / num2;
+                            }
+                            break;
+                        case '%':
+                            if (num2 == 0) {
+                                System.out.println("제수는 0이 아니어야 합니다.");
+                                valid = false;
+                            } else {
+                                result = num1 / num2;
+                            }
+                            break;
+                    }
+                    // 결과값 출력
+                    if (valid) {
+                        System.out.println(num1 + " " + op + " " + num2 + " = " + result);
+                    }
+                    break;
+            
+                default: // 나열된 연산자 외 다른 연산자 입력 시 오류메세지 출력
+                    System.out.println("사용할 수 없는 연산자 입니다.");
+                    break;
+            }
+
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
