@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class knou_if {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            // 연산자 선택 메세지 출력
+            System.out.print("연산자를 선택하시오(+, -, *, /, %, q(quit)): ");
+
+            // 연산자 입력 받기
+            char op = sc.next().charAt(0);
+
+            // q 또는 Q 입력 시 프로그램 종료 if 문
+            if (op == 'q' || op == 'Q') {
+                System.out.println("프로그램을 종료합니다.");
+                break;
+            }
+
+            // +, -, *, /, % 외 다른 연산자 입력 시 오류 메세지 출력
+            if (op != '+' && op != '-' && op != '*' && op != '/' && op != '%') {
+                System.out.println("사용할 수 없는 연산자입니다.");
+                System.out.println();
+                continue;
+            }
+
+            // 값1 입력받기
+            System.out.print("  좌측 피연산자: ");
+            int num1 = sc.nextInt();
+
+            // 값2 입력받기
+            System.out.print("  우측 피연산자: ");
+            int num2 = sc.nextInt();
+
+            // 연산 결과값
+            int result = 0;
+            boolean valid = true;
+
+            // 각 연산자별 연산식 if문
+            if (op == '+') {
+                result = num1 + num2;
+            } else if (op == '-') {
+                result = num1 - num2;
+            } else if (op == '*') {
+                result = num1 * num2;
+            } else if (op == '/') {
+                // 제수가 0인 경우 오류 메세지 출력
+                if (num2 == 0) {
+                    System.out.println("제수는 0이 아니어야 합니다.");
+                    valid = false;
+                } else {
+                    result = num1 / num2;
+                }
+            } else if (op == '%') {
+                if (num2 == 0) {
+                    System.out.println("제수는 0이 아니어야 합니다.");
+                    valid = false;
+                } else {
+                    result = num1 % num2;
+                }
+            }
+
+            // 결과값 출력
+            if (valid) {
+                System.out.println(num1 + " " + op + " " + num2 + " = " + result);
+            }
+
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
